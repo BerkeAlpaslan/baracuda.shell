@@ -3,6 +3,9 @@ function Get-ScriptDirectory { Split-Path $MyInvocation.ScriptName }
 $PROMPT_CONFIG = Join-Path (Get-ScriptDirectory) 'baracuda.omp.json'
 oh-my-posh --init --shell pwsh --config $PROMPT_CONFIG | Invoke-Expression
 
+# Zoxide
+Invoke-Expression (& { (zoxide init powershell | Out-String) })
+
 # Icons
 Import-Module -Name Terminal-Icons
 

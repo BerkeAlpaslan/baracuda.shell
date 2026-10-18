@@ -230,7 +230,7 @@
             "always_enabled": true,
             "cache_duration": "none"
           },
-          "template": "❯{{ if gt .Code 0 }}\uf00d{{ else }}\uf42e{{ end }} ",
+          "template": "❯ {{ if gt .Code 0 }}\uf00d{{ else }}\uf42e{{ end }} ",
           "foreground": "#e0f8ff",
           "type": "exit",
           "style": "plain",
