@@ -1,9 +1,0 @@
-7zip   
-curl
-zoxide
-fzf    
-gcc    
-jq     
-neovim 
-nvm    
-sudo   
