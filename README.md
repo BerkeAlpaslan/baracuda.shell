@@ -38,6 +38,7 @@ Also needed:
 | File | What it is | Where it goes |
 | ---- | ----------- | --------------- |
 | `baracuda.omp.json` | The Oh My Posh prompt theme | `%USERPROFILE%\.config\powershell\` |
+| `baracuda-claude.omp.json` | Oh My Posh theme for Claude Code's status line (model, context usage, 5h/7d rate limit, battery, time) | Anywhere — path is referenced from Claude Code's `settings.json` (see [below](#claude-code-status-line-optional)); kept next to `baracuda.omp.json` here |
 | `user_profile.ps1` | Aliases, PSReadLine/PSFzf setup, prompt init — the actual custom config | `%USERPROFILE%\.config\powershell\` |
 | `Microsoft.PowerShell_profile.ps1` | PowerShell's own profile entrypoint: sets `$env:Path` and dot-sources `user_profile.ps1` | Your `$PROFILE` path (usually `Documents\PowerShell\`) |
 
@@ -59,6 +60,23 @@ Also needed:
 
 > [!NOTE]
 > `baracuda.omp.json` belongs in `.config\powershell\`, next to `user_profile.ps1` — **not** directly under `.config\`. `user_profile.ps1` resolves the theme path relative to its own folder (`Join-Path (Get-ScriptDirectory) 'baracuda.omp.json'`), so both files have to live side by side for the prompt to load.
+
+## Claude Code status line (optional)
+
+`baracuda-claude.omp.json` renders Oh My Posh's [`claude` segment](https://ohmyposh.dev/docs/segments/agents/claude) as [Claude Code](https://code.claude.com/)'s status line instead of a shell prompt — it shows the active model, context window usage, 5-hour/7-day rate limit gauges, battery, and time.
+
+1. Put the theme file somewhere permanent, e.g. next to `baracuda.omp.json` in `%USERPROFILE%\.config\powershell\`.
+2. Add a `statusLine` entry to Claude Code's `settings.json` (global: `%USERPROFILE%\.claude\settings.json`, or a project's `.claude\settings.json`):
+   ```json
+   "statusLine": {
+     "type": "command",
+     "command": "oh-my-posh claude --config 'C:/Users/berke/.config/powershell/baracuda-claude.omp.json'",
+     "padding": 0
+   }
+   ```
+3. Start a new Claude Code session — the status line picks it up immediately, no restart of the shell needed.
+
+This is independent of the PowerShell prompt setup above: Claude Code itself invokes `oh-my-posh claude`, piping its own session data (model, cost, token usage, etc.) in on stdin, so `oh-my-posh` only needs to be on `PATH` (already covered by the [requirements](#requirements)).
 
 ## What's customized
 

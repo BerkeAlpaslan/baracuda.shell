@@ -1,0 +1,148 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "debug_prompt": {
+    "template": " Debugging ",
+    "foreground": "#ffffff",
+    "background": "transparent"
+  },
+  "blocks": [
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "segments": [
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "leading_diamond": "\ue0b6",
+          "template": " \udb82\udfc9 {{ .Model.DisplayName }} ",
+          "foreground": "#ffffff",
+          "background": "#FF6B35",
+          "type": "claude",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "branch_icon": "\ue725 ",
+            "cache_duration": "none",
+            "fetch_status": true,
+            "fetch_upstream_icon": true
+          },
+          "template": " {{ .HEAD }} {{ if .Working.Changed }}{{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}<#ef5350> \uf046 {{ .Staging.String }}</>{{ end }} ",
+          "foreground": "#011627",
+          "powerline_symbol": "\ue0b0 ",
+          "background": "#fffb38",
+          "type": "git",
+          "style": "powerline",
+          "background_templates": [
+            "{{ if or (.Working.Changed) (.Staging.Changed) }}#ffeb95{{ end }}",
+            "{{ if and (gt .Ahead 0) (gt .Behind 0) }}#c5e478{{ end }}",
+            "{{ if gt .Ahead 0 }}#c792ea{{ end }}",
+            "{{ if gt .Behind 0}}#c792ea{{ end }}"
+          ]
+        },
+        {
+          "properties": {
+            "cache_duration": "none",
+            "style": "full"
+          },
+          "template": " {{ .Path }} ",
+          "foreground": "#e4e4e4",
+          "powerline_symbol": "\ue0b0",
+          "background": "#444444",
+          "type": "path",
+          "style": "powerline"
+        },
+        {
+          "properties": {
+            "cache_duration": "none",
+            "root_icon": "\uf292"
+          },
+          "template": "\uf0e7 ",
+          "foreground": "#fffb38",
+          "background": "#ef5350",
+          "type": "root",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "template": " \uf252 {{ .FiveHourUsage }}% ",
+          "foreground": "#ffffff",
+          "background": "#303030",
+          "type": "claude",
+          "style": "diamond",
+          "foreground_templates": [
+            "{{ if and (ge .FiveHourUsage 91) (le .FiveHourUsage 100) }}#FF3B30{{ end }}",
+            "{{ if and (ge .FiveHourUsage 81) (le .FiveHourUsage 90) }}#FF4500{{ end }}",
+            "{{ if and (ge .FiveHourUsage 71) (le .FiveHourUsage 80) }}#FFA500{{ end }}",
+            "{{ if and (ge .FiveHourUsage 61) (le .FiveHourUsage 70) }}#FFD700{{ end }}",
+            "{{ if and (ge .FiveHourUsage 51) (le .FiveHourUsage 60) }}#FFFF00{{ end }}",
+            "{{ if and (ge .FiveHourUsage 41) (le .FiveHourUsage 50) }}#ADFF2F{{ end }}",
+            "{{ if and (ge .FiveHourUsage 31) (le .FiveHourUsage 40) }}#7FFF00{{ end }}",
+            "{{ if and (ge .FiveHourUsage 21) (le .FiveHourUsage 30) }}#32CD32{{ end }}",
+            "{{ if and (ge .FiveHourUsage 11) (le .FiveHourUsage 20) }}#00FF00{{ end }}",
+            "{{ if le .FiveHourUsage 10 }}#39FF14{{ end }}"
+          ]
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "template": "<parentBackground>\ue0b0</> \uf133 {{ .SevenDayUsage }}% ",
+          "foreground": "#ffffff",
+          "background": "#303030",
+          "type": "claude",
+          "style": "diamond",
+          "foreground_templates": [
+            "{{ if and (ge .SevenDayUsage 91) (le .SevenDayUsage 100) }}#FF3B30{{ end }}",
+            "{{ if and (ge .SevenDayUsage 81) (le .SevenDayUsage 90) }}#FF4500{{ end }}",
+            "{{ if and (ge .SevenDayUsage 71) (le .SevenDayUsage 80) }}#FFA500{{ end }}",
+            "{{ if and (ge .SevenDayUsage 61) (le .SevenDayUsage 70) }}#FFD700{{ end }}",
+            "{{ if and (ge .SevenDayUsage 51) (le .SevenDayUsage 60) }}#FFFF00{{ end }}",
+            "{{ if and (ge .SevenDayUsage 41) (le .SevenDayUsage 50) }}#ADFF2F{{ end }}",
+            "{{ if and (ge .SevenDayUsage 31) (le .SevenDayUsage 40) }}#7FFF00{{ end }}",
+            "{{ if and (ge .SevenDayUsage 21) (le .SevenDayUsage 30) }}#32CD32{{ end }}",
+            "{{ if and (ge .SevenDayUsage 11) (le .SevenDayUsage 20) }}#00FF00{{ end }}",
+            "{{ if le .SevenDayUsage 10 }}#39FF14{{ end }}"
+          ]
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "template": "<parentBackground>\ue0b0</>{{ if eq \"True\" (title (default \"False\" .Env.DISABLE_SEGMENT_BATTERY)) }}{{ else }}{{ if not .Error }}{{ if eq \"Charging\" .State.String }}{{ if le .Percentage 10 }} \udb82\udc9c {{ .Percentage }}% {{ else if and (ge .Percentage 11) (le .Percentage 20) }} \udb80\udc86 {{ .Percentage }}% {{ else if and (ge .Percentage 21) (le .Percentage 30) }} \udb80\udc87 {{ .Percentage }}% {{ else if and (ge .Percentage 31) (le .Percentage 40) }} \udb80\udc88 {{ .Percentage }}% {{ else if and (ge .Percentage 41) (le .Percentage 50) }} \udb82\udc9d {{ .Percentage }}% {{ else if and (ge .Percentage 51) (le .Percentage 60) }} \udb80\udc89 {{ .Percentage }}% {{ else if and (ge .Percentage 61) (le .Percentage 70) }} \udb82\udc9e {{ .Percentage }}% {{ else if and (ge .Percentage 71) (le .Percentage 80) }} \udb80\udc8a {{ .Percentage }}% {{ else if and (ge .Percentage 81) (le .Percentage 90) }} \udb80\udc8b {{ .Percentage }}% {{ else }} \udb80\udc85 {{ .Percentage }}% {{ end }}{{ else }}{{ if le .Percentage 10 }} \udb80\udc7a {{ .Percentage }}% {{ else if and (ge .Percentage 11) (le .Percentage 20) }} \udb80\udc7b {{ .Percentage }}% {{ else if and (ge .Percentage 21) (le .Percentage 30) }} \udb80\udc7c {{ .Percentage }}% {{ else if and (ge .Percentage 31) (le .Percentage 40) }} \udb80\udc7d {{ .Percentage }}% {{ else if and (ge .Percentage 41) (le .Percentage 50) }} \udb80\udc7e {{ .Percentage }}% {{ else if and (ge .Percentage 51) (le .Percentage 60) }} \udb80\udc7f {{ .Percentage }}% {{ else if and (ge .Percentage 61) (le .Percentage 70) }} \udb80\udc80 {{ .Percentage }}% {{ else if and (ge .Percentage 71) (le .Percentage 80) }} \udb80\udc81 {{ .Percentage }}% {{ else if and (ge .Percentage 81) (le .Percentage 90) }} \udb80\udc82 {{ .Percentage }}% {{ else }} \udb80\udc79 {{ .Percentage }}% {{ end }}{{ end }}{{ else }}!{{ end }}{{ end }}",
+          "background": "#444444",
+          "type": "battery",
+          "style": "diamond",
+          "foreground_templates": [
+            "{{ if le .Percentage 10 }}#FF0000{{ end }}",
+            "{{ if and (ge .Percentage 11) (le .Percentage 20) }}#FF4500{{ end }}",
+            "{{ if and (ge .Percentage 21) (le .Percentage 30) }}#FFA500{{ end }}",
+            "{{ if and (ge .Percentage 31) (le .Percentage 40) }}#FFD700{{ end }}",
+            "{{ if and (ge .Percentage 41) (le .Percentage 50) }}#FFFF00{{ end }}",
+            "{{ if and (ge .Percentage 51) (le .Percentage 60) }}#ADFF2F{{ end }}",
+            "{{ if and (ge .Percentage 61) (le .Percentage 70) }}#7FFF00{{ end }}",
+            "{{ if and (ge .Percentage 71) (le .Percentage 80) }}#32CD32{{ end }}",
+            "{{ if and (ge .Percentage 81) (le .Percentage 90) }}#00FF00{{ end }}",
+            "{{ if and (ge .Percentage 91) (le .Percentage 100) }}#008000{{ end }}"
+          ]
+        },
+        {
+          "properties": {
+            "cache_duration": "none",
+            "time_format": "Mon, 02 Jan 2006 | 15:04:05"
+          },
+          "trailing_diamond": "\ue0b4",
+          "template": "<parentBackground>\ue0b0</> \udb80\udcf0 {{ .CurrentDate | date .Format }} ",
+          "foreground": "#ffffff",
+          "background": "#0077c2",
+          "type": "time",
+          "style": "diamond"
+        }
+      ]
+    }
+  ],
+  "version": 3
+}
