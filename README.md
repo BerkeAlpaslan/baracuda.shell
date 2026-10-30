@@ -75,7 +75,7 @@ Also needed:
    ```json
    "statusLine": {
      "type": "command",
-     "command": "oh-my-posh claude --config 'C:/Users/berke/.config/powershell/baracuda-claude.omp.json'",
+     "command": "oh-my-posh claude --config 'C:/Users/<YourUsername>/.config/powershell/baracuda-claude.omp.json'",
      "padding": 0
    }
    ```
