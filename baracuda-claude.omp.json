@@ -275,7 +275,7 @@
         {
           "type": "claude",
           "style": "plain",
-          "template": " Session: {{ .FiveHourUsage }}% ",
+          "template": " Session: {{ .FiveHourUsage }}%   ",
           "foreground_templates": [
             "{{ if le .FiveHourUsage 10 }}#00AA55{{ end }}",
             "{{ if and (ge .FiveHourUsage 11) (le .FiveHourUsage 20) }}#33CC66{{ end }}",
@@ -293,15 +293,9 @@
           }
         },
         {
-          "type": "text",
-          "style": "plain",
-          "template": " | ",
-          "foreground": "#999999"
-        },
-        {
           "type": "claude",
           "style": "plain",
-          "template": " Weekly: {{ .SevenDayUsage }}% ",
+          "template": " Weekly: {{ .SevenDayUsage }}%   ",
           "foreground_templates": [
             "{{ if le .SevenDayUsage 10 }}#00AA55{{ end }}",
             "{{ if and (ge .SevenDayUsage 11) (le .SevenDayUsage 20) }}#33CC66{{ end }}",
@@ -319,15 +313,9 @@
           }
         },
         {
-          "type": "text",
-          "style": "plain",
-          "template": " | ",
-          "foreground": "#999999"
-        },
-        {
           "type": "claude",
           "style": "plain",
-          "template": " Context: {{ .TokenUsagePercent }}% ",
+          "template": " Context: {{ .TokenUsagePercent }}%",
           "foreground_templates": [
             "{{ if le .TokenUsagePercent 10 }}#00AA55{{ end }}",
             "{{ if and (ge .TokenUsagePercent 11) (le .TokenUsagePercent 20) }}#33CC66{{ end }}",
