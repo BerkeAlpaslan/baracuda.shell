@@ -32,7 +32,7 @@
           "style": "powerline",
           "powerline_symbol": "",
           "template": "{{ if .Effort }}  {{ .Effort.Level }} {{ end }}",
-          "background": "#303030",
+          "background": "#555555",
           "foreground_templates": [
             "{{ if and .Effort (eq .Effort.Level \"low\") }}#00aa55{{ end }}",
             "{{ if and .Effort (eq .Effort.Level \"medium\") }}#ffd700{{ end }}",
@@ -49,8 +49,15 @@
           "style": "powerline",
           "powerline_symbol": "",
           "template": "{{ if and .Thinking .Thinking.Enabled }}  Thinking {{ end }}",
-          "foreground": "#ffffff",
-          "background": "#9b59b6",
+          "foreground": "#e4e4e4",
+          "foreground_templates": [
+            "{{ if and .Effort (eq .Effort.Level \"low\") }}#00aa55{{ end }}",
+            "{{ if and .Effort (eq .Effort.Level \"medium\") }}#ffd700{{ end }}",
+            "{{ if and .Effort (eq .Effort.Level \"high\") }}#ffa500{{ end }}",
+            "{{ if and .Effort (eq .Effort.Level \"xhigh\") }}#ff4500{{ end }}",
+            "{{ if and .Effort (eq .Effort.Level \"max\") }}#ff0000{{ end }}"
+          ],
+          "background": "#555555",
           "cache": {
             "duration": "none"
           }
@@ -259,7 +266,7 @@
           "foreground": "#ffffff",
           "background": "#0077c2",
           "options": {
-            "time_format": "Mon, 02 Jan 2006 | 15:04:05"
+            "time_format": "Mon, 02 Jan 2006 | 15:04"
           },
           "cache": {
             "duration": "none"
