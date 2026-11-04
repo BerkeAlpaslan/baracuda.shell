@@ -32,7 +32,6 @@
           "style": "powerline",
           "powerline_symbol": "",
           "template": "{{ if .Effort }}  {{ .Effort.Level }} {{ end }}",
-          "background": "#555555",
           "foreground_templates": [
             "{{ if and .Effort (eq .Effort.Level \"low\") }}#00aa55{{ end }}",
             "{{ if and .Effort (eq .Effort.Level \"medium\") }}#ffd700{{ end }}",
@@ -40,6 +39,7 @@
             "{{ if and .Effort (eq .Effort.Level \"xhigh\") }}#ff4500{{ end }}",
             "{{ if and .Effort (eq .Effort.Level \"max\") }}#ff0000{{ end }}"
           ],
+          "background": "#333c3c",
           "cache": {
             "duration": "none"
           }
@@ -57,7 +57,7 @@
             "{{ if and .Effort (eq .Effort.Level \"xhigh\") }}#ff4500{{ end }}",
             "{{ if and .Effort (eq .Effort.Level \"max\") }}#ff0000{{ end }}"
           ],
-          "background": "#555555",
+          "background": "#333c3c",
           "cache": {
             "duration": "none"
           }
